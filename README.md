@@ -20,6 +20,11 @@
  
  *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `mv provision.dev.user.sh  provision.stage.user.sh`
  
+ *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vim Vagrantfile`
+ 
+     - config.vm.hostname = "stage"
+     - config.vm.define = "stage"
+ 
 
 
 
