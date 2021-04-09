@@ -107,6 +107,10 @@
 
   *vagrant@stage:~/projects/nikita$* `git branch -a`
   
+  *vagrant@stage:~/projects/nikita$* `git checkout release1`
+  
+  
+  
   
 
   
