@@ -33,7 +33,7 @@
      - config.vm.provision "shell", path: "../provision.all.root.sh"
      - config.vm.provision "shell", path: "provision.stage.root.sh"
      - 
-     - [Press Esc --> :wq]
+     - [Press Esc --> :wq --> Press Enter]
 
  *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vim provision.stage.root.sh`
  
@@ -41,7 +41,19 @@
      - 
      - sudo su -l  vagrant  provision.stage.user.sh
      - 
-     - [Press Esc --> :wq]
+     - [Press Esc --> :wq --> Press Enter]
+
+ *sim@workstation-sim:~/Work/projects/infra$* `git add vms/stage/`
+ 
+ *sim@workstation-sim:~/Work/projects/infra$* `git status`
+ 
+ *sim@workstation-sim:~/Work/projects/infra$* `git config --global user.email "you@example.com"`
+ 
+ *sim@workstation-sim:~/Work/projects/infra$* `git commit -m "Added stage vm" vms/cassandra/Vagrantfile vms/dev/Vagrantfile --author=ramesh`
+ 
+ 
+ 
+ 
 
 
 
