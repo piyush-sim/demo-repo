@@ -61,17 +61,26 @@
     - df = pd.read_csv('/home/vagrant/projects/monica/python_scripts/DBU Conversion Cost.csv')
     - session = cluster.connect('sim_keyspace_stg')
     - 
-    - REPLACE :  **import cassandra.cluster**          
-    - WITH    :  `from cassandra.cluster import Cluster` 
-    -            `from cassandra.auth import PlainTextAuthProvider`
+    - REPLACE :  import cassandra.cluster          
+    - WITH    :  from cassandra.cluster import Cluster 
+    -            from cassandra.auth import PlainTextAuthProvider
     -            
-    - REPLACE :  **clstr = cassandra.cluster.cluster()**
-    -            **session = clstr.connect('sim_keyspace-stg')**
-    - WITH    :  `auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')`
-    -            `cluster = Cluster(['192.168.33.17'],auth_provider = auth_provider, protocol_version=4,)`
-    -            `session = cluster.connect('sim_keyspace_stg')`
+    - REPLACE :  clstr = cassandra.cluster.cluster()
+    -            session = clstr.connect('sim_keyspace-stg')
+    - WITH    :  auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
+    -            cluster = Cluster(['192.168.33.17'],auth_provider = auth_provider, protocol_version=4,)
+    -            session = cluster.connect('sim_keyspace_stg')
     -           
 
+7. Run both python scripts
+
+  *vagrant@stage:~/projects/monica/python_scripts$* `python customer_and_engine_details.py`
+
+  *vagrant@stage:~/projects/monica/python_scripts$* `python customer_and_item_type.py`
+  
+8. Using new key space in cassandra we will se new tables
+
+  *vagrant@cassandra:~$* `cqlsh 192.168.33.17`
 
 
   
