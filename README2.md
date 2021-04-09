@@ -52,7 +52,7 @@
     - df_dbu_conv_cost = pd.read_csv('/home/vagrant/projects/monica/python_scripts/DBU Conversion Cost.csv')
     - df_one_bms_engine = pd.read_csv('/home/vagrant/projects/monica/python_scripts/OneBMS Engine Sales.csv')
     - session = cluster.connect('sim_keyspace_stg')
-    - 
+     
     - One Empty List was not defined in **def prepare_set_one_bms_two(df_data):** function so add **function part_info_list_two = []** 
 
 
@@ -60,17 +60,17 @@
   
     - df = pd.read_csv('/home/vagrant/projects/monica/python_scripts/DBU Conversion Cost.csv')
     - session = cluster.connect('sim_keyspace_stg')
-    - 
+     
     - REPLACE :  import cassandra.cluster          
     - WITH    :  from cassandra.cluster import Cluster 
-    -            from cassandra.auth import PlainTextAuthProvider
-    -            
+                 from cassandra.auth import PlainTextAuthProvider
+                
     - REPLACE :  clstr = cassandra.cluster.cluster()
-    -            session = clstr.connect('sim_keyspace-stg')
+                 session = clstr.connect('sim_keyspace-stg')
     - WITH    :  auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
-    -            cluster = Cluster(['192.168.33.17'],auth_provider = auth_provider, protocol_version=4,)
-    -            session = cluster.connect('sim_keyspace_stg')
-    -           
+                 cluster = Cluster(['192.168.33.17'],auth_provider = auth_provider, protocol_version=4,)
+                 session = cluster.connect('sim_keyspace_stg')
+               
 
 7. Run both python scripts
 
@@ -102,6 +102,10 @@
               <inet-address value="${jboss.bind.address:0.0.0.0}"/>   
           </interface>                   
       </interfaces>
+
+9. Check if release1 is there
+
+  *vagrant@stage:~/projects/nikita$* `git branch -a`
   
   
 
