@@ -22,6 +22,8 @@
  
  *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vim Vagrantfile`
  
+     - [Press i for insert]
+     - 
      - config.vm.hostname = "stage"
      - config.vm.define = "stage"
      - config.vm.network "private_network", ip: "192.168.33.15"
@@ -31,13 +33,15 @@
      - config.vm.provision "shell", path: "../provision.all.root.sh"
      - config.vm.provision "shell", path: "provision.stage.root.sh"
      - 
-     - _SAVE & EXIT_ [Esc --> :wq]
+     - [Press Esc --> :wq]
 
+ *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vim provision.stage.root.sh`
  
-
-
- 
-
+     - [Press i for insert]
+     - 
+     - sudo su -l  vagrant  provision.stage.user.sh
+     - 
+     - [Press Esc --> :wq]
 
 
 
