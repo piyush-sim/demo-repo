@@ -64,11 +64,44 @@
  *sim@workstation-sim:~/Work/projects/infra$* `git add .`
 
  *sim@workstation-sim:~/Work/projects/infra$* `git pull`
+ 
      - Username : rames-simadvisory
      - password : ****************
  
  *sim@workstation-sim:~/Work/projects/infra$* `git push`
+ 
      - Username : rames-simadvisory
-     - password : ****************
+     - Password : ****************
+
+4 Let's spin it up
+
+  *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vagrant up`
+
+  *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vagrant ssh`
+  
+5 Inside Stage VM
+  
+  *vagrant@stage* `mkdir temp`
+  
+  *vagrant@stage:~/temp$* `wget http://localhost:8080/`
+  
+  *sim@workstation-sim:~/temp$* `cd /etc/nginx/sites-enabled/`
+  
+  *sim@workstation-sim:/etc/nginx/sites-enabled$* `sudo vim stgsimai.myddns.me`
+  
+    - Password for sim : ***********
+    - proxy_pass         http://192.168.33.15:8080/; # stage
+
+  *sim@workstation-sim:/etc/nginx/sites-enabled$* `sudo nginx -s reload`
+  
+6 Check if stgsimai.myddns.in showing Wildfly 
 
 
+
+
+
+
+
+  
+  
+  
