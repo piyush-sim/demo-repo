@@ -2,6 +2,14 @@
 
 1 Always take snapshot of dev and cassandra box before altering anything
 
-  *sim@workstation-sim:~/Work/projects/infra/vms/dev$* `vagrant snapshot save dev-20210408`
+  *vagrant@stage:~/projects$* `git clone https://github.com/simaiserver/monica.git`
+  	
+	- Username : simaiserver
+	- Password : **As Usual**
+
+  *vagrant@stage:~/projects$* `git clone https://github.com/simaiserver/nikita.git`
+  	
+	- Username : simaiserver
+	- Password : **As Usual**
+
   
-  *sim@workstation-sim:~/Work/projects/infra/vms/cassandra$* `vagrant snapshot save 
