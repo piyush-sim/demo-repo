@@ -1,6 +1,6 @@
 ## After Staging VM is all set
 
-1 Always take snapshot of dev and cassandra box before altering anything
+1. Always take snapshot of dev and cassandra box before altering anything
 
   *vagrant@stage:~/projects$* `git clone https://github.com/simaiserver/monica.git`
   	
@@ -12,7 +12,7 @@
 	- Username : simaiserver
 	- Password : **As Usual**
 
-2 Making New Key Space in Cassandra
+2. Making New Key Space in Cassandra
 
   *vagrant@cassandra:~$* `cqlsh 192.168.33.17`
   
@@ -20,12 +20,62 @@
   
   cqlsh> `use sim_keyspace_stg;`
   
-3 Making New Tables in the Key Space  
+3. Making New Tables in the Key Space  
   
   cqlsh:use sim_keyspace_stg>  `CREATE TABLE customer_engine_details (customer_spec text, customer_name text, application set<text>, segment text, sub_segment text, engine_model set<text>, certification text, horsepower varint, ebu_price list<tuple<float, float, float>>, dbu_price list<tuple<float, float, float, float, float, float, float, float>>, engine_price list<tuple<float, float, float>>, no_of_engines float, ebu_opts list<tuple<text, text, float>>,  PRIMARY KEY (customer_spec, customer_name));`
   
   cqlsh:use sim_keyspace_stg> `CREATE TABLE customer_and_item (customer_spec text, customer_name text, part_desc text, part_num text, item_type text, sell_price float, quantity int , PRIMARY KEY (customer_spec, customer_name, part_desc));`
+
+4. Install Required Python Modules
+  
+  *vagrant@stage:~/projects/monica/python_scripts$* `pip install "cassandra_driver==3.22.0"`
+  
+  *vagrant@stage:~/projects/monica/python_scripts$* `pip install numpy`
+  
+  *vagrant@stage:~/projects/monica/python_scripts$* `pip install wheel`
+  
+  *vagrant@stage:~/projects/monica/python_scripts$* `pip install pandas`
+
+
+5. Get the path 
+  
+  *vagrant@stage:~/projects/monica/python_scripts$* `pwd`
+  
+      - OUTPUT : /home/vagrant/projects/monica/python_scripts
+
+6. Change path in all the python scripts
+
+  *vagrant@stage:~/projects/monica/python_scripts$* `vim customer_and_engine_details.py`
+  
+    - df = pd.read_csv('/home/vagrant/projects/monica/python_scripts/Customer and Engine Details.csv')
+    - df_cols_cust_spec = pd.read_csv('/home/vagrant/projects/monica/python_scripts/COLS - Customer Spec.csv')
+    - df_dbu_conv_cost = pd.read_csv('/home/vagrant/projects/monica/python_scripts/DBU Conversion Cost.csv')
+    - df_one_bms_engine = pd.read_csv('/home/vagrant/projects/monica/python_scripts/OneBMS Engine Sales.csv')
+    - session = cluster.connect('sim_keyspace_stg')
+    - 
+    - One Empty List was not defined in **def prepare_set_one_bms_two(df_data):** function so add **function part_info_list_two = []** 
+
+
+  *vagrant@stage:~/projects/monica/python_scripts$* `vim customer_and_item_type.py`
+  
+    - df = pd.read_csv('/home/vagrant/projects/monica/python_scripts/DBU Conversion Cost.csv')
+    - session = cluster.connect('sim_keyspace_stg')
+    - 
+    - REPLACE :  **import cassandra.cluster**          
+    - WITH    :  `from cassandra.cluster import Cluster` 
+    -            `from cassandra.auth import PlainTextAuthProvider`
+    -            
+    - REPLACE :  **clstr = cassandra.cluster.cluster()**
+    -            **session = clstr.connect('sim_keyspace-stg')**
+    - WITH    :  `auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')`
+    -            `cluster = Cluster(['192.168.33.17'],auth_provider = auth_provider, protocol_version=4,)`
+    -            `session = cluster.connect('sim_keyspace_stg')`
+    -           
+
+
+
   
   
   
- 
+  
+  
