@@ -22,8 +22,20 @@
  
  *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vim Vagrantfile`
  
-     - `config.vm.hostname = "stage"`
-     - `config.vm.define = "stage"`
+     - config.vm.hostname = "stage"
+     - config.vm.define = "stage"
+     - config.vm.network "private_network", ip: "192.168.33.15"
+     - vb.memory = "2048"
+     - vb.name = "stage"
+     - config.vm.provision "file", source: "provision.stage.user.sh", destination: "provision.stage.user.sh"
+     - config.vm.provision "shell", path: "../provision.all.root.sh"
+     - config.vm.provision "shell", path: "provision.stage.root.sh"
+     - 
+     - _SAVE & EXIT_ [Esc --> :wq]
+
+ 
+
+
  
 
 
