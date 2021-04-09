@@ -109,7 +109,7 @@
   
   *vagrant@stage:~/projects/nikita$* `git checkout release1`
   
-  
+#Till 1:48
   
   
 
