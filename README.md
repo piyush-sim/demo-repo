@@ -22,8 +22,8 @@
  
  *sim@workstation-sim:~/Work/projects/infra/vms/stage$* `vim Vagrantfile`
  
-     - config.vm.hostname = "stage"
-     - config.vm.define = "stage"
+     - `config.vm.hostname = "stage"`
+     - `config.vm.define = "stage"`
  
 
 
