@@ -1,6 +1,6 @@
 ## After Staging VM is all set
 
-1. Clone updated monica & nikits repos from git
+1. Clone updated monica & nikita repos from git
 
   *vagrant@stage:~/projects$* `git clone https://github.com/simaiserver/monica.git`
   	
@@ -86,8 +86,24 @@
   
   cqlsh:use sim_keyspace_stg> `describe tables;`
   
+8. Come back to stage VM and install maven
   
-
+  *vagrant@stage:~$* `sudo apt install maven`
+  
+  *vagrant@stage:~$* `cd /opt/wildfly/standalone/configuration`
+  
+  *vagrant@stage:/opt/wildfly/standalone/configuration$* `sudo vim standalone.xml`
+  
+    - <interfaces>    
+          <interface name="management">   
+              <inet-address value="${jboss.bind.address.management:0.0.0.0}"/>  
+      </interface>                 
+      <interface name="public">   
+              <inet-address value="${jboss.bind.address:0.0.0.0}"/>   
+          </interface>                   
+      </interfaces>
+  
+  
 
   
   
