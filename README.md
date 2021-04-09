@@ -51,11 +51,24 @@
  
  *sim@workstation-sim:~/Work/projects/infra$* `git commit -m "Added stage vm" vms/cassandra/Vagrantfile vms/dev/Vagrantfile --author=ramesh`
  
+ *sim@workstation-sim:~/Work/projects/infra$* `git add .gitignore`
  
+ *sim@workstation-sim:~/Work/projects/infra$* `git commit -m "Added .vagrant to ignore" --author=ramesh`
  
+ *sim@workstation-sim:~/Work/projects/infra$* `git status`
  
+ *sim@workstation-sim:~/Work/projects/infra$* `git rm -r --cached .`
+ 
+ *sim@workstation-sim:~/Work/projects/infra$* `git status`
 
+ *sim@workstation-sim:~/Work/projects/infra$* `git add .`
 
-
+ *sim@workstation-sim:~/Work/projects/infra$* `git pull`
+     - Username : rames-simadvisory
+     - password : ****************
+ 
+ *sim@workstation-sim:~/Work/projects/infra$* `git push`
+     - Username : rames-simadvisory
+     - password : ****************
 
 
