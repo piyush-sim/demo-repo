@@ -109,12 +109,51 @@
   
   *vagrant@stage:~/projects/nikita$* `git checkout release1`
   
-#Till 1:48
-  
-  
+10. Change stringfilepath
 
+  *vagrant@stage:~/projects/nikita/SIM/src/main/java/com/BrandAnswers/SIM$* `vim CentralProcessingEngine.java`
   
+    -- String filePath = "/home/vagrant/projects/nikita/SIM/src/main/resources/jsons/FunsonRegistry.json";
+    -- String filePath = "/home/vagrant/projects/nikita/SIM/src/main/resources/jsons/" +fileName;
+    
+11. Set up New Jboss user
+
+  *vagrant@stage:~$* `sudo /opt/wildfly/bin/add-user.sh`
   
+  --> Press "a" --> then "Enter" for management user
   
+    -- Username : sim
+    -- Password : ** As Usual **
+    
+  *vagrant@stage:~$* `sudo systemctl stop wildfly`
+  
+  *vagrant@stage:~$* `sudo systemctl start wildfly`
+  
+  *vagrant@stage:~$* `sudo systemctl status wildfly`
+  
+  *vagrant@stage:~$* `sudo systemctl stop wildfly`
+  
+12. Open new duplicate session
+
+  *vagrant@stage:~$* `cd /opt/wildfly/bin`
+  
+  *vagrant@stage:/opt/wildfly/bin$* `sudo ./standalone.sh`   <-- "This is how server starts"
+  
+13. Open new duplicate session
+
+  *vagrant@stage:~/projects/nikita/SIM/src/main/resources$* `vim cassandra.properties`
+  
+    -- cassandra.keyspace=sim_keyspace_stg
+  
+14. Install mvn
+
+  *vagrant@stage:~/projects/nikita/SIM$* `mvn clean install`
+  
+    -- Username : sim
+    -- Password : ** As Usual **
+    
+15. Visit
+
+    -- stgsimai.myddns.me  
   
   
